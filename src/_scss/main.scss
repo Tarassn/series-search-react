@@ -3,6 +3,10 @@
 body{
   font-family: $font-family;
 }
+.routerLink{
+  color:$color-black;
+  text-decoration: none;
+}
 .App-header{
   background: $body-bg;
   color:$color-white;
