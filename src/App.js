@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './_scss/main.scss';
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import SeriesItem from "./components/SeriesItem";
+import Main from "./components/Main";
+import SeriesPage from "./components/SeriesPage";
+import SelectedSeries from "./components/SelectedSeries";
+import NotFound from "./components/NotFound";
 
 class App extends Component {
   state ={
       searchField:(localStorage.getItem('searchField')|| ""),
   };
   componentDidMount() {
-      const searchField =  localStorage.getItem('searchField');
-      this.setState({searchField})
+
   }
   saveInput = () => {
       const { searchField } = this.state;
@@ -33,27 +36,25 @@ class App extends Component {
   };
   render() {
     return (
+        <Router>
         <div className="App">
             <Header/>
             <div className="wrapper">
-              <div className="main">
-                  <div className="title-container"><h2 className="title-container__title">Find your perfect series</h2>
-                      <ul>
-                          {this.state.myJson && this.state.myJson.map((serial) => (
-                          <SeriesItem
-                              name={serial.show.name}
-                              image={serial.show.image ? serial.show.image.medium: "" }
-                          />
-                          ))}
-                      </ul>
-                  </div>
-                  <div className="form-container">
-                      <input type="text" onInput={this.getSeries} value={this.state.searchField}/>
-                  </div>
-              </div>
+                <Switch>
+                    <Route exact path="/" render={()=>
+                <Main
+                    getSeries={this.getSeries}
+                    searchField={this.state.searchField}
+                    myJson={this.state.myJson}/>
+                    }/>
+                    <Route path="/SeriesPage" component={SeriesPage} />
+                    <Route path="/SelectedSeries" component={SelectedSeries} />
+                    <Route component={NotFound} />
+                </Switch>
             </div>
             <Footer/>
         </div>
+        </Router>
     );
   }
 }
