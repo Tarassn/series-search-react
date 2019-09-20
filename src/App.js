@@ -12,15 +12,35 @@ import NotFound from "./components/NotFound";
 class App extends Component {
   state ={
       searchField:(localStorage.getItem('searchField')|| ""),
+      selectedList:(JSON.parse(localStorage.getItem('selectedList')|| [])),
+      selectedObjects:[],
   };
   componentDidMount() {
-
+      this.fetchSelected()
   }
-  saveInput = () => {
+
+    saveInput = () => {
       const { searchField } = this.state;
       localStorage.setItem('searchField', searchField);
   };
+  addToSelected = (id) => {
+      let selectedList = [...this.state.selectedList];
+      if(selectedList.indexOf(id) === -1){
+          selectedList = [...this.state.selectedList, id];
+      }
+      else if(selectedList.indexOf(id) > -1){
+          selectedList.splice(selectedList.indexOf(id),1)
+      }
+      localStorage.setItem('selectedList', JSON.stringify(selectedList));
+      this.setState({selectedList});
+  };
 
+  getSavedValueFromSession = (id) => {
+      if (!sessionStorage.getItem(id)) {
+          return "";
+      }
+      return sessionStorage.getItem(id);
+  };
 
   getSeries = (e) => {
       e.preventDefault();
@@ -34,6 +54,24 @@ class App extends Component {
             this.saveInput()
         });
   };
+    fetchSelected = () => {
+        let selectedList = [...this.state.selectedList];
+        let selectedObjects = [...this.state.selectedObjects];
+        { this.state.selectedList.map((id) => {
+            return fetch(`http://api.tvmaze.com/shows/${id}`)
+                .then(function (response) {
+                    return response.json()
+                })
+                .then((myObj) => {
+                    if(selectedList.indexOf(myObj) === -1) {
+                        selectedObjects.push(myObj)
+                    }
+                });
+        })}
+        this.setState({selectedObjects});
+
+
+    };
   render() {
     return (
         <Router>
@@ -47,8 +85,19 @@ class App extends Component {
                     searchField={this.state.searchField}
                     myJson={this.state.myJson}/>
                     }/>
-                    <Route path="/SeriesPage" component={SeriesPage} />
-                    <Route path="/SelectedSeries" component={SelectedSeries} />
+                    <Route path="/SeriesPage" component={()=>
+                        <SeriesPage
+                            myJson={this.state.myJson}
+                            selectedList={this.state.selectedList}
+                            addToSelected={this.addToSelected}/>} />
+                    <Route path="/SelectedSeries" component={() =>
+                        <SelectedSeries
+                            getSavedValueFromSession={this.getSavedValueFromSession}
+                            selectedList={this.state.selectedList}
+                            addToSelected={this.addToSelected}
+                            selectedObjects={this.state.selectedObjects}
+                            fetchSelected={this.fetchSelected}
+                        />}/>
                     <Route component={NotFound} />
                 </Switch>
             </div>
