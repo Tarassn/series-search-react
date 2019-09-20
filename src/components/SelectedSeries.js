@@ -7,10 +7,7 @@ class SelectedSeries extends Component {
 
     }
     componentDidUpdate(prevProps, prevState) {
-        if(prevProps.selectedList !== this.props.selectedList){
-            console.log("AAA")
-            // this.props.fetchSelected()
-        }
+
     }
     // fetchData = () => {
     //     let selectedObjects = [...this.state.selectedObjects];

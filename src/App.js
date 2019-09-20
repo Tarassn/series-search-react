@@ -24,15 +24,30 @@ class App extends Component {
       localStorage.setItem('searchField', searchField);
   };
   addToSelected = (id) => {
+      let selectedObjects = [...this.state.selectedObjects];
       let selectedList = [...this.state.selectedList];
       if(selectedList.indexOf(id) === -1){
           selectedList = [...this.state.selectedList, id];
+          selectedObjects.map((item)=>{
+              console.log(item)
+              console.log(id)
+              if(item.id !== id){
+                  selectedObjects = [...this.state.selectedObjects, item];
+                  console.log(selectedObjects)
+
+              }
+          })
       }
       else if(selectedList.indexOf(id) > -1){
           selectedList.splice(selectedList.indexOf(id),1)
+          selectedObjects.map((item, index)=>{
+              if(item.id === id){
+                  selectedObjects.splice(index,1)
+              }
+          })
       }
       localStorage.setItem('selectedList', JSON.stringify(selectedList));
-      this.setState({selectedList});
+      this.setState({selectedList,selectedObjects});
   };
 
   getSavedValueFromSession = (id) => {
@@ -63,8 +78,9 @@ class App extends Component {
                     return response.json()
                 })
                 .then((myObj) => {
-                    if(selectedList.indexOf(myObj) === -1) {
+                    if(selectedList.map((e) => { return e.id; }).indexOf(myObj) === -1) {
                         selectedObjects.push(myObj)
+                        // console.log(selectedObjects)
                     }
                 });
         })}
