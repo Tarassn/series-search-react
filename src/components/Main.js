@@ -11,6 +11,7 @@ class Main extends Component {
                     <ul>
                         {myJson && myJson.map((serial) => (
                             <SeriesItem
+                                key={serial.show.id}
                                 id = {serial.show.id}
                                 name={serial.show.name}
                                 image={serial.show.image ? serial.show.image.medium: "" }
@@ -19,7 +20,7 @@ class Main extends Component {
                     </ul>
                 </div>
                 <div className="form-container">
-                    <input type="text" onInput={getSeries} value={searchField}/>
+                    <input type="text" onChange={getSeries} value={searchField}/>
                 </div>
             </div>
         );
