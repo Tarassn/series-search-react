@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class SeriesPage extends Component {
 
     render() {
-        let {myJson, addToSelected, selectedList} = this.props;
+        let {myJson, addToSelected, selectedObjects} = this.props;
         let seriesId = sessionStorage.getItem('seriesId');
         return (
             <div className={"mainSeriesPage"}>
@@ -15,9 +15,9 @@ class SeriesPage extends Component {
                                     <img src={item.show.image ? item.show.image.medium: "" }
                                          alt={item.show.name}/>
                                     <button
-                                        onClick={()=>{addToSelected(item.show.id)}}>
-                                        {((selectedList.indexOf(item.show.id) === -1)?
-                                            "Add to selected": "Delete selected")}</button>
+                                        onClick={()=>{addToSelected(item.show.id, item)}}>
+                                        {selectedObjects.hasOwnProperty(item.show.id)?
+                                        'Delete' : "Add"}</button>
                                     <p dangerouslySetInnerHTML={{ __html: item.show.summary }}></p>
                                </div>
                     }

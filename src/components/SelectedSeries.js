@@ -28,14 +28,14 @@ class SelectedSeries extends Component {
         return (
             <div className={"selectedSeriesPage"}>
                 <ul>
-                {this.props.selectedObjects.map((item) => (
+                {Object.values(this.props.selectedObjects).map((item) => (
                     <SelectedItem
-                        id={item.id}
-                        key={item.id}
                         item ={item}
-                        name={item.name}
-                        img={item.image.medium}
-                        summary={item.summary}
+                        id={item.show.id}
+                        key={item.show.id}
+                        name={item.show.name}
+                        img={item.show.image.medium}
+                        summary={item.show.summary}
                         addToSelected={this.props.addToSelected}
                     />
                 ))}
