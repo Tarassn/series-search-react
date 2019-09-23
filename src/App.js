@@ -13,6 +13,7 @@ class App extends Component {
   state ={
       searchField:(localStorage.getItem('searchField')|| ""),
       selectedObjects:(JSON.parse(localStorage.getItem('selectedObjects')|| {})),
+      minRateFilter:1,
   };
   componentDidMount() {
 
@@ -54,22 +55,10 @@ class App extends Component {
             this.saveInput()
         });
   };
-    // fetchSelected = () => {
-    //     let selectedObjects = {...this.state.selectedObjects};
-    //     { Object.values(selectedObjects).map((id) => {
-    //         return fetch(`http://api.tvmaze.com/shows/${id}`)
-    //             .then(function (response) {
-    //                 return response.json()
-    //             })
-    //             .then((myObj) => {
-    //                 if(Object.values(selectedObjects).map((e) => { return e.id; }).indexOf(myObj) === -1) {
-    //                     selectedObjects.push(myObj)
-    //                     // console.log(selectedObjects)
-    //                 }
-    //             });
-    //     })}
-    //     this.setState({selectedObjects});
-    // };
+  changeRateFilter = (e) => {
+      this.setState({ minRateFilter:e.target.value})
+  };
+
   render() {
     return (
         <Router>
@@ -81,7 +70,9 @@ class App extends Component {
                 <Main
                     getSeries={this.getSeries}
                     searchField={this.state.searchField}
-                    myJson={this.state.myJson}/>
+                    myJson={this.state.myJson}
+                    minRateFilter={this.state.minRateFilter}
+                    changeRateFilter={this.changeRateFilter}/>
                     }/>
                     <Route path="/SeriesPage" component={()=>
                         <SeriesPage
@@ -94,7 +85,6 @@ class App extends Component {
                             getSavedValueFromSession={this.getSavedValueFromSession}
                             addToSelected={this.addToSelected}
                             selectedObjects={this.state.selectedObjects}
-                            fetchSelected={this.fetchSelected}
                         />}/>
                     <Route component={NotFound} />
                 </Switch>
