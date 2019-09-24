@@ -15,9 +15,7 @@ class App extends Component {
       selectedObjects:(JSON.parse(localStorage.getItem('selectedObjects')|| {})),
       minRateFilter:1,
   };
-  componentDidMount() {
-
-  }
+  
     saveInput = () => {
       const { searchField } = this.state;
       localStorage.setItem('searchField', searchField);
