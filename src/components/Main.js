@@ -11,7 +11,6 @@ class Main extends Component {
                 <div className="title-container"><h2 className="title-container__title">Find your perfect series</h2>
                     <ul>
                         {myJson && myJson.map((serial) => {
-                            console.log( Date.parse(serial.show.premiered) - Date.parse(date));
                             if(serial.show.rating.average !== null && serial.show.rating.average >= minRateFilter
                                 && (Date.parse(serial.show.premiered) - Date.parse(date)) <= 0 ) {
                                 return <SeriesItem
