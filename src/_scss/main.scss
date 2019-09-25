@@ -23,26 +23,7 @@ body{
   align-items: center;
   width: 100%;
 }
-button{
-  width: 100px;
-  font-weight: 800;
-  font-size: 110%;
-  outline: none;
-  border: 0;
-  border-radius: 3px;
-  color: #fff;
-  padding: 13px 5px;
-  background-color: $color-red;
-  z-index: 1;
-  box-shadow: 0 15px 30px 0 rgba(237, 66, 100, 0.6);
-  cursor: pointer;
-  margin:0 20px;
-  transition: opacity 300ms, transform 300ms;
-}
-button:hover{
-  opacity: 0.95;
-  transform: scale(1.1);
-}
+
 .App-logo {
   position: absolute;
   right: 10px;
@@ -207,6 +188,26 @@ button:hover{
   filter: brightness(110%);
   color: #000;
   overflow: scroll;
+  button{
+    width: 100px;
+    font-weight: 800;
+    font-size: 110%;
+    outline: none;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    padding: 13px 5px;
+    background-color: $color-red;
+    z-index: 1;
+    box-shadow: 0 15px 30px 0 rgba(237, 66, 100, 0.6);
+    cursor: pointer;
+    margin:0 20px;
+    transition: opacity 300ms, transform 300ms;
+  }
+  button:hover{
+    opacity: 0.95;
+    transform: scale(1.1);
+  }
 }
 
 .title-container__title {
@@ -305,6 +306,20 @@ footer{
     color:$color-white;
     text-decoration: none;
     font-size: 100%;
+  }
+}
+.react-calendar{
+  background: $body-bg !important;
+  font-size: 120%;
+  border-radius: 4px;
+  border:1px solid $color-black !important;
+  .react-calendar__tile--active{
+    background: $color-black!important;
+    border-radius: 3px;
+    opacity: 0.8;
+  }
+  .react-calendar__month-view__days__day--weekend{
+    font-weight: bolder;
   }
 }
 

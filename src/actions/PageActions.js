@@ -1,6 +1,7 @@
 export const GET_SERIES="GET_SERIES";
 export const SET_MIN_RATE = 'SET_MIN_RATE';
 export const SET_SEARCH = 'SET_SEARCH';
+export const SET_DATE = 'SET_DATE';
 
 export function setMinRate(e) {
     return {
@@ -25,6 +26,12 @@ export const getSeries = (e) => (dispatch) => {
                 payload:myJson,
             });
         });
+};
 
+export const setDate = (date) => {
+    return {
+        type:SET_DATE,
+        payload:date,
+    }
 };
 

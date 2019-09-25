@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import SeriesItem from "./SeriesItem";
+import Calendar from 'react-calendar';
 
 class Main extends Component {
 
     render() {
-        let {myJson, searchField, minRateFilter,setMinRate,getSeries,selectedObjects,setSelected} = this.props;
+        let {myJson, searchField, minRateFilter,setMinRate,getSeries,selectedObjects,setSelected, date} = this.props;
         return (
             <div className="main">
                 <div className="title-container"><h2 className="title-container__title">Find your perfect series</h2>
                     <ul>
                         {myJson && myJson.map((serial) => {
-                            if(serial.show.rating.average !== null && serial.show.rating.average >= minRateFilter ) {
+                            console.log( Date.parse(serial.show.premiered) - Date.parse(date));
+                            if(serial.show.rating.average !== null && serial.show.rating.average >= minRateFilter
+                                && (Date.parse(serial.show.premiered) - Date.parse(date)) <= 0 ) {
                                 return <SeriesItem
                                     item={serial}
                                     key={serial.show.id}
@@ -38,6 +41,10 @@ class Main extends Component {
                         <option value="8">8+</option>
                         <option value="9">9+</option>
                     </select>
+                    <br/>
+                    <p style={{'color':'white'}}>Premiered from:</p>
+                    <Calendar onChange={this.props.onChange}
+                              value={this.props.date}/>
                 </div>
             </div>
         );

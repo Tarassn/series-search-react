@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux';
-import {setMinRate,getSeries,} from "./actions/PageActions";
+import {setMinRate,getSeries,setDate} from "./actions/PageActions";
 import {setSelected} from './actions/SelectedActions'
 import './_scss/main.scss';
 
@@ -14,8 +14,9 @@ import NotFound from "./components/NotFound";
 
 class App extends Component {
 
+
   render() {
-      let {page, selected, getSeries, setMinRate,setSelected} = this.props;
+      let {page, selected, getSeries, setMinRate, setSelected, setDate} = this.props;
     return (
         <Router>
         <div className="App">
@@ -30,7 +31,10 @@ class App extends Component {
                     minRateFilter={page.minRateFilter}
                     setMinRate={setMinRate}
                     selectedObjects={selected.selectedObjects}
-                    setSelected={setSelected}/>
+                    setSelected={setSelected}
+                    onChange={setDate}
+                    date={page.date}
+                    />
                     }/>
                     <Route path="/SeriesPage" component={()=>
                         <SeriesPage
@@ -63,6 +67,7 @@ const mapDispatchToProps = dispatch => {
         setMinRate: (e) => dispatch(setMinRate(e)),
         getSeries:(e) => dispatch(getSeries(e)),
         setSelected:(id,context,obj) => dispatch(setSelected(id,context, obj)),
+        setDate:(date) => dispatch(setDate(date))
     }
 };
 
