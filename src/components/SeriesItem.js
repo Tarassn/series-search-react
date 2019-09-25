@@ -8,12 +8,17 @@ class SeriesItem extends Component {
         sessionStorage.setItem('seriesId', seriesId);
     };
     render() {
+        let{setSelected, selectedObjects, id, name, image, item} = this.props;
         return (
-            <li data-id={this.props.id} onClick={this.saveIdToSession}>
+            <li data-id={id} onClick={this.saveIdToSession}>
                 <Link to="/SeriesPage" className="routerLink">
-                <span>{this.props.name}</span>
-                <img src={this.props.image} alt={this.props.name}/>
+                    <span>{name}</span>
+                    <img src={image} alt={name}/>
                 </Link>
+                <button
+                    onClick={()=>{setSelected(id,this, item,)}}>
+                    {selectedObjects.hasOwnProperty(id)?
+                        'Delete' : "Add"}</button>
             </li>
         );
     }

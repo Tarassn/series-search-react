@@ -15,6 +15,7 @@ import NotFound from "./components/NotFound";
 class App extends Component {
 
   render() {
+      let {page, selected, getSeries, setMinRate,setSelected} = this.props;
     return (
         <Router>
         <div className="App">
@@ -23,21 +24,23 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" render={()=>
                 <Main
-                    getSeries={this.props.getSeries}
-                    searchField={this.props.page.searchField}
-                    myJson={this.props.page.myJson}
-                    minRateFilter={this.props.page.minRateFilter}
-                    setMinRate={this.props.setMinRate}/>
+                    getSeries={getSeries}
+                    searchField={page.searchField}
+                    myJson={page.myJson}
+                    minRateFilter={page.minRateFilter}
+                    setMinRate={setMinRate}
+                    selectedObjects={selected.selectedObjects}
+                    setSelected={setSelected}/>
                     }/>
                     <Route path="/SeriesPage" component={()=>
                         <SeriesPage
-                            myJson={this.props.page.myJson}
-                            selectedObjects={this.props.selected.selectedObjects}
-                            setSelected={this.props.setSelected}
+                            myJson={page.myJson}
+                            selectedObjects={selected.selectedObjects}
+                            setSelected={setSelected}
                         />} />
                     <Route path="/SelectedSeries" component={() =>
                         <SelectedSeries
-                            selectedObjects={this.props.selected.selectedObjects}
+                            selectedObjects={selected.selectedObjects}
                         />}/>
                     <Route component={NotFound} />
                 </Switch>

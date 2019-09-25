@@ -12,6 +12,5 @@ export function selectedReducer(state = initialState,action) {
             return {...state,selectedObjects: action.payload};
         default:
             return state
-
     }
 }

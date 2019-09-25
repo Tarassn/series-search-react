@@ -4,7 +4,7 @@ import SeriesItem from "./SeriesItem";
 class Main extends Component {
 
     render() {
-        let {myJson, searchField, minRateFilter,setMinRate,getSeries} = this.props;
+        let {myJson, searchField, minRateFilter,setMinRate,getSeries,selectedObjects,setSelected} = this.props;
         return (
             <div className="main">
                 <div className="title-container"><h2 className="title-container__title">Find your perfect series</h2>
@@ -12,10 +12,13 @@ class Main extends Component {
                         {myJson && myJson.map((serial) => {
                             if(serial.show.rating.average !== null && serial.show.rating.average >= minRateFilter ) {
                                 return <SeriesItem
+                                    item={serial}
                                     key={serial.show.id}
                                     id={serial.show.id}
                                     name={serial.show.name}
                                     image={serial.show.image ? serial.show.image.medium : ""}
+                                    selectedObjects={selectedObjects}
+                                    setSelected={setSelected}
                                 />
                             }
                             return null

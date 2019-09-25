@@ -15,7 +15,8 @@ class SeriesPage extends Component {
                                     <img src={item.show.image ? item.show.image.medium: "" }
                                          alt={item.show.name}/>
                                     <button
-                                        onClick={()=>{setSelected(item.show.id,this, item,)}}>
+                                        onClick={()=>
+                                        {setSelected(item.show.id,this, item,)}}>
                                         {selectedObjects.hasOwnProperty(item.show.id)?
                                         'Delete' : "Add"}</button>
                                     <p dangerouslySetInnerHTML={{ __html: item.show.summary }}></p>
