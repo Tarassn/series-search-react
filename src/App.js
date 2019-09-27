@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux';
-import {setMinRate,getSeries,setDate} from "./actions/PageActions";
+import {setMinRate,getSeries,setDate,setRateSwitch} from "./actions/PageActions";
 import {setSelected} from './actions/SelectedActions'
 import './_scss/main.scss';
 
@@ -12,11 +12,13 @@ import SeriesPage from "./components/SeriesPage";
 import SelectedSeries from "./components/SelectedSeries";
 import NotFound from "./components/NotFound";
 
+
+
 class App extends Component {
 
 
   render() {
-      let {page, selected, getSeries, setMinRate, setSelected, setDate} = this.props;
+      let {page, selected, getSeries, setMinRate, setSelected, setDate, setRateSwitch} = this.props;
     return (
         <Router>
         <div className="App">
@@ -24,17 +26,19 @@ class App extends Component {
             <div className="wrapper">
                 <Switch>
                     <Route exact path="/" render={()=>
-                <Main
-                    getSeries={getSeries}
-                    searchField={page.searchField}
-                    myJson={page.myJson}
-                    minRateFilter={page.minRateFilter}
-                    setMinRate={setMinRate}
-                    selectedObjects={selected.selectedObjects}
-                    setSelected={setSelected}
-                    onChange={setDate}
-                    date={page.date}
-                    />
+                            <Main
+                                getSeries={getSeries}
+                                searchField={page.searchField}
+                                myJson={page.myJson}
+                                minRateFilter={page.minRateFilter}
+                                setMinRate={setMinRate}
+                                selectedObjects={selected.selectedObjects}
+                                setSelected={setSelected}
+                                onChange={setDate}
+                                date={page.date}
+                                setRateSwitch={setRateSwitch}
+                                rateSwitch={page.rateSwitch}
+                                />
                     }/>
                     <Route path="/SeriesPage" component={()=>
                         <SeriesPage
@@ -67,7 +71,8 @@ const mapDispatchToProps = dispatch => {
         setMinRate: (e) => dispatch(setMinRate(e)),
         getSeries:(e) => dispatch(getSeries(e)),
         setSelected:(id,context,obj) => dispatch(setSelected(id,context, obj)),
-        setDate:(date) => dispatch(setDate(date))
+        setDate:(date) => dispatch(setDate(date)),
+        setRateSwitch:(e) => dispatch(setRateSwitch(e)),
     }
 };
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from "@material-ui/core/Button";
 
 class SeriesPage extends Component {
 
@@ -14,11 +15,11 @@ class SeriesPage extends Component {
                                     <h3>{item.show.name}</h3>
                                     <img src={item.show.image ? item.show.image.medium: "" }
                                          alt={item.show.name}/>
-                                    <button
+                                    <Button
                                         onClick={()=>
                                         {setSelected(item.show.id,this, item,)}}>
                                         {selectedObjects.hasOwnProperty(item.show.id)?
-                                        'Delete' : "Add"}</button>
+                                        'Delete' : "Add"}</Button>
                                     <p dangerouslySetInnerHTML={{ __html: item.show.summary }}></p>
                                </div>
                     }

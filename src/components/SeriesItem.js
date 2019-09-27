@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 class SeriesItem extends Component {
     saveIdToSession = (e) => {
@@ -15,10 +16,10 @@ class SeriesItem extends Component {
                     <span>{name}</span>
                     <img src={image} alt={name}/>
                 </Link>
-                <button
+                <Button
                     onClick={()=>{setSelected(id,this, item,)}}>
                     {selectedObjects.hasOwnProperty(id)?
-                        'Delete' : "Add"}</button>
+                        'Delete' : "Add"}</Button>
             </li>
         );
     }
