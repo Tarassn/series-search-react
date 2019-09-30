@@ -4,10 +4,11 @@ import SelectedItem from "./SelectedItem";
 class SelectedSeries extends Component {
 
     render() {
+        let {selectedObjects} = this.props;
         return (
             <div className={"selectedSeriesPage"}>
                 <ul>
-                {Object.values(this.props.selectedObjects).map((item) => (
+                 {Object.keys(selectedObjects).length > 0 && Object.values(selectedObjects).map((item) => (
                     <SelectedItem
                         item ={item}
                         id={item.show.id}
@@ -15,7 +16,6 @@ class SelectedSeries extends Component {
                         name={item.show.name}
                         img={item.show.image.medium}
                         summary={item.show.summary}
-                        addToSelected={this.props.addToSelected}
                     />
                 ))}
                 </ul>
