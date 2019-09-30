@@ -116,7 +116,6 @@ body{
     border: 0;
     border-radius: 3px;
     color: #fff;
-    padding: 13px 5px;
     background-color: $color-red;
     z-index: 1;
     box-shadow: 0 15px 30px 0 rgba(237, 66, 100, 0.6);
@@ -125,7 +124,8 @@ body{
     transition: opacity 300ms, transform 300ms;
   }
   button:hover{
-    opacity: 0.95;
+    background-color: $color-red;
+    opacity: 0.8;
     transform: scale(1.1);
   }
 }
@@ -166,7 +166,6 @@ body{
     border: 0;
     border-radius: 3px;
     color: #fff;
-    padding: 13px 5px;
     background-color: $color-red;
     z-index: 1;
     box-shadow: 0 15px 30px 0 rgba(237, 66, 100, 0.6);
@@ -175,7 +174,8 @@ body{
     transition: opacity 300ms, transform 300ms;
   }
   button:hover{
-    opacity: 0.95;
+    background-color: $color-red;
+    opacity: 0.8;
     transform: scale(1.1);
   }
 }
@@ -196,7 +196,6 @@ body{
     border: 0;
     border-radius: 3px;
     color: #fff;
-    padding: 13px 5px;
     background-color: $color-red;
     z-index: 1;
     box-shadow: 0 15px 30px 0 rgba(237, 66, 100, 0.6);
@@ -205,7 +204,8 @@ body{
     transition: opacity 300ms, transform 300ms;
   }
   button:hover{
-    opacity: 0.95;
+    background-color: $color-red;
+    opacity: 0.8;
     transform: scale(1.1);
   }
 }
@@ -236,30 +236,31 @@ body{
   span{
     color:$color-white
   }
-  select {
-    margin: 10px;
-    width: 50px;
-    padding: 5px 15px 5px 15px;
-    font-size: 16px;
-    border: 1px solid #CCC;
-    height: 34px;
-    appearance: none;
-    outline: none;
-  }
+}
+
+.MuiMenuItem-root{
+  height: 50px!important;
+}
+.MuiSelect-root{
+  color: $color-white!important;
+  margin-left: 30px;
+}
+.MuiInput-input{
+  color: $color-white!important;
+  font-size: 120%!important;
 }
 
 input[type="text"] {
-  background-color: transparent;
-  border: 0;
-  border-bottom: solid 1px $color-red;
-  width: 30%;
-  padding-bottom: 4px;
-  color: #fff;
-  font-weight: lighter;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
-  margin-right: 20px;
-  font-size: 20px;
+  //background-color: transparent;
+  //border: 0;
+  //border-bottom: solid 1px $color-red;
+  //width: 30%;
+  //padding-bottom: 4px;
+  //color: #fff;
+  //font-weight: lighter;
+  //letter-spacing: 2px;
+  //margin-bottom: 30px;
+  //font-size: 20px;
 }
 
 input[type="text"] {
@@ -321,5 +322,11 @@ footer{
   .react-calendar__month-view__days__day--weekend{
     font-weight: bolder;
   }
+}
+
+@media screen and (max-width: 600px){
+.main{
+  flex-direction: column;
+}
 }
 
