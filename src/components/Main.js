@@ -10,11 +10,16 @@ import theme from "../theme";
 
 
 class Main extends Component {
+    constructor(props) {
+        super(props);
+        this.selectRef=React.createRef();
+    }
 
     render() {
         let {myJson, searchField, minRateFilter,
             setMinRate,getSeries,selectedObjects,
             setSelected, date, setRateSwitch,rateSwitch} = this.props;
+        console.log(this.selectRef.current);
         return (
             <div className="main">
                 <div className="title-container">
@@ -40,11 +45,11 @@ class Main extends Component {
 
                 <div className="form-container">
             <ThemeProvider theme={theme}>
-                    <Input type="text" onChange={getSeries} value={searchField}
+                    <Input data-test='component-input' type="text" onChange={getSeries} value={searchField}
                     style={{
                         color:'#fff'
                     }}/>
-                    <Select value={minRateFilter} onChange={setMinRate} name="country"
+                    <Select value={minRateFilter} onChange={setMinRate} ref={this.selectRef} data-test='min-rate-select' name="country"
                     style={{
                         marginLeft:'20px',
                         color:'#fff'}}>
@@ -58,7 +63,7 @@ class Main extends Component {
                         <MenuItem value="8">8+</MenuItem>
                         <MenuItem value="9">9+</MenuItem>
                     </Select>
-                    <Switch checked={rateSwitch} onChange={(e) => {setRateSwitch(e)}}/>
+                    <Switch className='rateSwitch' checked={rateSwitch} onChange={(e) => {setRateSwitch(e)}}/>
                     <span> - Rate filter {rateSwitch?'enabled':'disabled'} </span>
                     <br/>
                     <p style={{'color':'white'}}>Premiered before:</p>

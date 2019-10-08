@@ -14,14 +14,14 @@ import NotFound from "./components/NotFound";
 
 
 
-class App extends Component {
+export class App extends Component {
 
 
   render() {
       let {page, selected, getSeries, setMinRate, setSelected, setDate, setRateSwitch} = this.props;
     return (
         <Router>
-        <div className="App">
+        <div className="App" data-test="app-render">
             <Header/>
             <div className="wrapper">
                 <Switch>

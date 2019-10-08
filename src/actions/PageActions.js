@@ -18,6 +18,7 @@ export const setRateSwitch = e => {
 };
 
 export const getSeries = (e) => (dispatch) => {
+    e.preventDefault();
     const searchField=e.target.value;
     return fetch(`http://api.tvmaze.com/search/shows?q=${searchField}`)
         .then(function(response) {
@@ -27,7 +28,7 @@ export const getSeries = (e) => (dispatch) => {
             dispatch({
                 type: SET_SEARCH,
                 payload:searchField
-            })
+            });
             dispatch({
                 type: GET_SERIES,
                 payload:myJson,
