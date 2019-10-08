@@ -1,5 +1,5 @@
 export const SET_SELECTED = 'SET_SELECTED';
-// export const DELETE_SELECTED = 'DELETE_SELECTED';
+
 
 
 export const setSelected = (id,context, obj) => {
@@ -17,10 +17,3 @@ export const setSelected = (id,context, obj) => {
     }
 };
 
-// export const deleteSelected = (id,context) =>{
-//     let selectedObjects = {...context.props.selectedObjects};
-//     return {
-//         type: DELETE_SELECTED,
-//         payload: selectedObjects,
-//     }
-// };
