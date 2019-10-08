@@ -10,16 +10,22 @@ import theme from "../theme";
 
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.selectRef=React.createRef();
-    }
+    state={
+      showCalendar:false
+    };
+    selectRef=React.createRef();
+
+    toggleCalendar = () => {
+        this.setState({
+            showCalendar:!this.state.showCalendar
+        })
+    };
 
     render() {
         let {myJson, searchField, minRateFilter,
             setMinRate,getSeries,selectedObjects,
-            setSelected, date, setRateSwitch,rateSwitch} = this.props;
-        console.log(this.selectRef.current);
+            setSelected, date, setRateSwitch,rateSwitch, onChangeDate} = this.props;
+
         return (
             <div className="main">
                 <div className="title-container">
@@ -66,9 +72,36 @@ class Main extends Component {
                     <Switch className='rateSwitch' checked={rateSwitch} onChange={(e) => {setRateSwitch(e)}}/>
                     <span> - Rate filter {rateSwitch?'enabled':'disabled'} </span>
                     <br/>
-                    <p style={{'color':'white'}}>Premiered before:</p>
-                    <Calendar onChange={this.props.onChange}
-                              value={this.props.date}/>
+                    <span style={{'color':'white'}}>Premiered before:</span>
+
+                <Input type="text"
+                       onClick={this.toggleCalendar}
+                       value={date.toLocaleDateString()}
+                       id="calendarInput"
+                       style={{
+                           color:'#fff',
+                           marginLeft:"10px"
+                       }}/>
+                {this.state.showCalendar &&
+                <div style={{position:"relative"}}>
+                    <Calendar onChange={onChangeDate}
+                              value={date}/>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="40"
+                         height="40"
+                         fill="#ED4264"
+                         style={{
+                             position:"absolute",
+                             left:'350px',
+                             bottom:"208px",
+                             cursor:'pointer',
+                         }}
+                         onClick={this.toggleCalendar}
+                         viewBox="0 0 18 18">
+                        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/>
+                    </svg>
+                </div> }
+
             </ThemeProvider>
                 </div>
             </div>

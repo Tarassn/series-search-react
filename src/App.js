@@ -34,7 +34,7 @@ export class App extends Component {
                                 setMinRate={setMinRate}
                                 selectedObjects={selected.selectedObjects}
                                 setSelected={setSelected}
-                                onChange={setDate}
+                                onChangeDate={setDate}
                                 date={page.date}
                                 setRateSwitch={setRateSwitch}
                                 rateSwitch={page.rateSwitch}
